@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneios MLBB</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
+        }
+
+        /* Efeito de fade-in ao carregar a página */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e;
+            color: white;
+            font-size: 2rem;
+            position: relative; /* Torna o header o elemento de referência */
+        }
+
+        /* Seção de ranking */
+        .ranking {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .ranking h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        .team-logo {
+            width: 50px;
+        }
+
+        /* Modo escuro */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode header {
+            background-color: #333;
+        }
+
+        body.dark-mode th {
+            background-color: #444;
+        }
+
+        /* Botão de modo escuro melhorado */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 80px; /* Ajustado para ficar mais abaixo, sem sobreposição */
+            right: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 6px 8px; /* Botão menor */
+            cursor: pointer;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+
+        .dark-mode-toggle i {
+            font-size: 1rem; /* Ícone menor */
+        }
+
+        /* Ícone de lua para o botão */
+        .dark-mode-toggle .moon-icon {
+            content: url('https://img.icons8.com/ios-filled/50/ffffff/moon-symbol.png');
+            width: 16px;
+            height: 16px;
+        }
+
+        .dark-mode-toggle .sun-icon {
+            content: url('https://img.icons8.com/ios-filled/50/ffffff/sun.png');
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Responsividade aprimorada */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.5rem;
+                padding: 15px;
+            }
+
+            .ranking h2 {
+                font-size: 1.5rem;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            .team-logo {
+                width: 40px;
+            }
+
+            .dark-mode-toggle {
+                top: 70px;
+                right: 10px;
+                padding: 5px 6px; /* Botão menor em telas pequenas */
+                font-size: 0.7rem;
+            }
+
+            .dark-mode-toggle i {
+                font-size: 0.9rem; /* Ícone ainda menor para telas pequenas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dark-mode-toggle {
+                top: 65px;
+                right: 8px;
+                padding: 4px 5px; /* Mais compacto para dispositivos muito pequenos */
+                font-size: 0.65rem;
+            }
+
+            .dark-mode-toggle i {
+                font-size: 0.8rem;
+            }
+
+            .ranking {
+                padding: 0 10px;
+            }
+
+            .team-logo {
+                width: 30px;
+            }
+
+            table th, table td {
+                padding: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="fade-in">
+        Torneios MLBB
+    </header>
+
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="moon-icon"></i> Escuro
+    </button>
+
+    <div class="ranking fade-in">
+        <h2>Ranking das Equipes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Logo</th>
+                    <th>Equipe</th>
+                    <th>Vitórias</th>
+                    <th>Membros</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><img class="team-logo" src="logo1.png" alt="Equipe 1"></td>
+                    <td>Equipe Alpha</td>
+                    <td>10</td>
+                    <td>João, Maria, Pedro</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><img class="team-logo" src="logo2.png" alt="Equipe 2"></td>
+                    <td>Equipe Beta</td>
+                    <td>8</td>
+                    <td>Carlos, Ana, Luiza</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><img class="team-logo" src="logo3.png" alt="Equipe 3"></td>
+                    <td>Equipe Gamma</td>
+                    <td>6</td>
+                    <td>Felipe, Laura, Paulo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Função para alternar entre modo claro e escuro
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+
+            // Alterna o ícone do botão
+            const toggleButton = document.querySelector('.dark-mode-toggle i');
+            if (body.classList.contains('dark-mode')) {
+                toggleButton.classList.replace('moon-icon', 'sun-icon');
+            } else {
+                toggleButton.classList.replace('sun-icon', 'moon-icon');
+            }
+        }
+    </script>
+</body>
+</html>
